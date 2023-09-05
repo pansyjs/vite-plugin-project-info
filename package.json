@@ -1,6 +1,6 @@
 {
   "name": "@pansy/vite-plugin-project-info",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Vite 项目信息插件，可在控制台日志查看，方便定位问题",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
