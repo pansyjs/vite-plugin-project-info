@@ -15,4 +15,4 @@ export function log(title, description, color) {
   }
 }
 
-log('{pkg.name}', '{pkg.version}', '#eb2f96');
+log('{pkg.name}', '{pkg.version}', '#1890ff');

@@ -1,23 +1,21 @@
+import fs from 'fs';
 import path from 'path';
-import { createCode } from './helpers/createCode';
 
-import type { Plugin } from 'vite'
+import type { PluginOption } from 'vite'
 
-interface IOptions {
+export interface IOptions {
   entry?: string;
 }
 
-const virtualModuleId = 'virtual:project-info'
-const resolvedVirtualModuleId = '\0' + virtualModuleId;
-
-const projectInfoPlugin: (opts: IOptions) => Plugin = (opts = {}) => {
+export function projectInfo(opts: IOptions = {}): PluginOption {
   const { entry = path.resolve('src/main') } = opts;
-
   const lastEntry = entry.split('.')[0];
+
+  const virtualModuleId = 'virtual:project-info1'
+  const resolvedVirtualModuleId = '\0' + virtualModuleId;
 
   return {
     name: 'vite-plugin-project-info',
-    enforce: 'pre',
     resolveId(id) {
       if (id === virtualModuleId) {
         return resolvedVirtualModuleId
@@ -27,10 +25,17 @@ const projectInfoPlugin: (opts: IOptions) => Plugin = (opts = {}) => {
       if (id === resolvedVirtualModuleId) {
         const packageJson = require(path.resolve('package.json'));
 
-        const { name, version,  } = packageJson || {};
+        const { name, version } = packageJson || {};
 
         if (name && version) {
-          return createCode();
+          let tpl = fs.readFileSync(path.resolve(__dirname, './template.tpl'), { encoding: 'utf8' });
+          const pkgMatchs = tpl.match(/{pkg\.[^{}]*}/g);
+          pkgMatchs?.forEach((m) => {
+            const fieldName = m.match(/{pkg\.(.*)}/)?.[1];
+            tpl = tpl.replace(new RegExp(m, 'g'), packageJson[fieldName || ''] || '');
+          });
+
+          return tpl;
         }
 
         return `
@@ -48,5 +53,3 @@ const projectInfoPlugin: (opts: IOptions) => Plugin = (opts = {}) => {
     },
   }
 }
-
-export default projectInfoPlugin;

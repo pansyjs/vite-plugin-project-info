@@ -1,22 +1,23 @@
 {
   "name": "@pansy/vite-plugin-project-info",
   "version": "1.0.0",
-  "description": "",
-  "main": "./dist/index.js",
+  "description": "Vite 项目信息插件，可在控制台日志查看，方便定位问题",
+  "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
-  "types": "./dist/index.d.ts",
+  "types": "./dist/esm/index.d.ts",
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "tsup"
+    "start": "father dev",
+    "build": "father build"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^20.5.9",
-    "tsup": "^7.2.0",
+    "father": "^4.3.1",
     "typescript": "^5.2.2",
     "vite": "^4.4.9"
   }
