@@ -1,13 +1,13 @@
 import fs from 'fs';
 import path from 'path';
 
-import type { PluginOption } from 'vite'
+import type { Plugin } from 'vite'
 
 export interface IOptions {
   entry?: string;
 }
 
-export function projectInfo(opts: IOptions = {}): PluginOption {
+export function projectInfo(opts: IOptions = {}): Plugin {
   const { entry = path.resolve('src/main') } = opts;
   const lastEntry = entry.split('.')[0];
 
