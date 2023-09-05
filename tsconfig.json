@@ -1,19 +1,19 @@
 {
-    "compilerOptions": {
-      "target": "esnext",
-      "module": "esnext",
-      "moduleResolution": "node",
-      "strict": true,
-      "sourceMap": true,
-      "declaration": true,
-      "resolveJsonModule": true,
-      "esModuleInterop": true,
-      "noImplicitAny": false,
-      "lib": ["esnext", "dom"],
-      "types": [
-        "@types/node",
-      ]
-    },
-    "include": ["src"],
-    "exclude": ["node_modules"]
-  }
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "strict": true,
+    "sourceMap": true,
+    "declaration": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "noImplicitAny": false,
+    "lib": ["esnext", "dom"],
+    "types": [
+      "@types/node",
+    ]
+  },
+  "include": ["src"],
+  "exclude": ["node_modules"]
+}
