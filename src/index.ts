@@ -9,9 +9,9 @@ export interface IOptions {
 
 export function projectInfo(opts: IOptions = {}): Plugin {
   const { entry = path.resolve('src/main') } = opts;
-  const lastEntry = entry.split('.')[0];
+  const lastEntry = entry.replace(/\.(tsx?|jsx?)$/, '');
 
-  const virtualModuleId = 'virtual:project-info1'
+  const virtualModuleId = 'virtual:project-info'
   const resolvedVirtualModuleId = '\0' + virtualModuleId;
 
   return {
